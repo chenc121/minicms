@@ -1,0 +1,358 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap EOE</title>
+		
+		<!-- Bootstrap -->
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+        <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+        <!--fileinput plugin -->
+        <link href="{% static 'css/fileinput/fileinput.min.css' %}" rel="stylesheet">
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+{#		    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>#}
+{#		    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>#}
+		<![endif]-->
+	</head>
+    
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project XXX</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
+		</nav>
+
+
+	    <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href=" ">Overview <span class="sr-only">(current)</span></a></li>
+                    <li><a id = 'reprots'>Reports</a></li>
+                    <li><a href="">Analytics</a></li>
+                    <li><a href="JavaScript:void(0)" onclick="document.getElementById('light').style.display='block';
+                      document.getElementById('fade').style.display='block'">Upload</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Nav item</a></li>
+                    <li><a href="">Nav item again</a></li>
+                    <li><a href="">One more nav</a></li>
+                    <li><a href="">Another nav item</a></li>
+                    <li><a href="">More navigation</a></li>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="">Nav item again</a></li>
+                    <li><a href="">One more nav</a></li>
+                    <li><a href="">Another nav item</a></li>
+                </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h2 class="Upload-header" onclick="spanHide(spanremove)">Upload</h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <colgroup>
+                                <col class="col-sm-1 col-md-1"></col>
+                                <col class="col-sm-1 col-md-1" ></col>
+                                <col class="col-sm-2 col-md-3"></col>
+                                <col class="col-sm-5 col-md-6"></col>
+                            </colgroup>
+                            <tr>
+                                <th>NO.</th>
+                                <th>系统名称</th>
+                                <th>目的主机路径</th>
+                                <th>本地文件路径</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <form action="/uploadFile/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                                    <td style="vertical-align:middle;">1</td>
+                                    <td style="vertical-align:middle;">消息运营</td>
+                                    <td style="vertical-align:middle;" id="xxyy_Upload_Path">
+                                        <input type="text" class="form-control" placeholder="/app/jfms/work/scripts">
+                                    <td style="vertical-align:middle;">
+                                        <div class="input-group">
+                                            <label class="sr-only" name="fileinputlabel">fileinput</label>
+                                            <input id="uploadBox" type="file" multiple class="file file-loading">
+{#                                            <button type="submit" id="btnUpload" class="btn btn-primary">submit</button>#}
+{#                                            <span class="input-group-btn">#}
+{#                                                <button id="btnUpload"class="btn btn-primary" onclick="uploadFiles()"> submit</button>#}
+{#                                            </span>#}
+{#                                            <span class="glyphicon glyphicon-remove-circle" id="spanremove"></span>#}
+{#                                            <span class="glyphicon glyphicon-ok-circle" id="spanok">{{ result }}</span>#}
+{#                                            <input type="file" name="uploadBox" id="uploadBox"/>#}
+                                        </div>
+                                    </td>
+                                </form>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h1 class="page-header">Dashboard</h1>
+                    <div class="row placeholders">
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                            <h4>Label</h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                            <h4>Label</h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                            <h4>Label</h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                            <h4>Label</h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                    </div>
+
+                    <h2 class="sub-header">Section title</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                                <th>Header</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1,001</td>
+                                <td>Lorem</td>
+                                <td>ipsum</td>
+                                <td>dolor</td>
+                                <td>sit</td>
+                            </tr>
+                            <tr>
+                                <td>1,002</td>
+                                <td>amet</td>
+                                <td>consectetur</td>
+                                <td>adipiscing</td>
+                                <td>elit</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>Integer</td>
+                                <td>nec</td>
+                                <td>odio</td>
+                                <td>Praesent</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>libero</td>
+                                <td>Sed</td>
+                                <td>cursus</td>
+                                <td>ante</td>
+                            </tr>
+                            <tr>
+                                <td>1,004</td>
+                                <td>dapibus</td>
+                                <td>diam</td>
+                                <td>Sed</td>
+                                <td>nisi</td>
+                            </tr>
+                            <tr>
+                                <td>1,005</td>
+                                <td>Nulla</td>
+                                <td>quis</td>
+                                <td>sem</td>
+                                <td>at</td>
+                            </tr>
+                            <tr>
+                                <td>1,006</td>
+                                <td>nibh</td>
+                                <td>elementum</td>
+                                <td>imperdiet</td>
+                                <td>Duis</td>
+                            </tr>
+                            <tr>
+                                <td>1,007</td>
+                                <td>sagittis</td>
+                                <td>ipsum</td>
+                                <td>Praesent</td>
+                                <td>mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,008</td>
+                                <td>Fusce</td>
+                                <td>nec</td>
+                                <td>tellus</td>
+                                <td>sed</td>
+                            </tr>
+                            <tr>
+                                <td>1,009</td>
+                                <td>augue</td>
+                                <td>semper</td>
+                                <td>porta</td>
+                                <td>Mauris</td>
+                            </tr>
+                            <tr>
+                                <td>1,010</td>
+                                <td>massa</td>
+                                <td>Vestibulum</td>
+                                <td>lacinia</td>
+                                <td>arcu</td>
+                            </tr>
+                            <tr>
+                                <td>1,011</td>
+                                <td>eget</td>
+                                <td>nulla</td>
+                                <td>Class</td>
+                                <td>aptent</td>
+                            </tr>
+                            <tr>
+                                <td>1,012</td>
+                                <td>taciti</td>
+                                <td>sociosqu</td>
+                                <td>ad</td>
+                                <td>litora</td>
+                            </tr>
+                            <tr>
+                                <td>1,013</td>
+                                <td>torquent</td>
+                                <td>per</td>
+                                <td>conubia</td>
+                                <td>nostra</td>
+                            </tr>
+                            <tr>
+                                <td>1,014</td>
+                                <td>per</td>
+                                <td>inceptos</td>
+                                <td>himenaeos</td>
+                                <td>Curabitur</td>
+                            </tr>
+                            <tr>
+                                <td>1,015</td>
+                                <td>sodales</td>
+                                <td>ligula</td>
+                                <td>in</td>
+                                <td>libero</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+	        </div>
+	    </div>
+        
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        
+        <script>
+            function uploadFiles_Json(){
+                var fileobj = $("#uploadBox")[0].files[0];
+                var form = new FormData();
+                form.append('uploadBox',fileobj);
+                $.getJSON('/uploadFile/',function(ret) {
+                        $('#spanremove').className = ret;
+                })
+            }
+
+            function uploadFiles() {
+                var fileobj = $("#uploadBox")[0].files[0];
+                var form = new FormData();
+                form.append('uploadBox',fileobj);
+{#                formap.pend('user','alex');#}
+                $.ajax({
+                    type:'POST',
+                    url:'/uploadFile/',
+                    data:form,
+                    processData:false,  // 告诉jquery不转换数据
+                    contentType:false,  // 告诉jquery不设置内容格式
+                    success:function (arg) {
+                        console.log(arg);
+                    }
+                })
+            }
+        </script>
+        <!--fileinput plugin-->
+        <script src="{% static 'js/fileinput/fileinput.min.js' %}"></script>
+        <script src="{% static 'js/fileinput/fileinput.js' %}"></script>
+        <script src="{% static 'js/fileinput/locals/zh.js' %}"></script>
+        <!--fileinput 初始化-->
+        <script>
+            $('#uploadBox').fileinput({
+                language:'zh',
+                uploadurl:'127.0.0.1:8002'+'/uploadFile',
+                uploadAsync:true,
+                showUpload:true,
+                showCaption:true,
+                showRemove:true,
+                showPreview:false,
+                dropZoneEnabled: false,
+                enctype: 'multipart/form-data',
+                browseClass:'btn btn-primary',
+                maxFileCount: 1,
+                msgFilesTooMany: "选择上传的文件数量 超过允许的最大数值！",
+            }).on("filebatchselected", function(event, files) {
+                    $(this).fileinput("uploadFile");
+                })
+            //上传处理
+            $('#uploadBox').on("filelock", function (e, files) {
+                $(this).fileinput("/uploadFile/");
+            })
+            //上传后处理
+            $('#uploadBox').on("fileuploaded", function (e, data) {
+                var res = data.response;
+                if (res.state > 0) {
+                    alert('上传成功');
+                    alert(res.path);
+                }
+                else {
+                    alert('上传失败')
+                }
+            })
+        </script>
+
+{#json+ajax #}
+{#        <script>#}
+{#            $(document).ready(function() {#}
+{#                $('#reprots').click(function() {#}
+{#                    $.getJSON('/add/',function(ret) {#}
+{#                        $('#reprots').html(ret);#}
+{#                    })#}
+{#                })#}
+{#            });#}
+{#        </script>#}
+    </body>
+</html>
